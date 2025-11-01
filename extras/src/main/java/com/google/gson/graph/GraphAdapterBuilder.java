@@ -125,10 +125,10 @@ public final class GraphAdapterBuilder {
    */
   public void registerOn(GsonBuilder gsonBuilder) {
     // Create copy to allow reusing GraphAdapterBuilder without affecting adapter factory
-    Map<Type, InstanceCreator<?>> instanceCreators = new HashMap<>(this.instanceCreators);
-    Factory factory = new Factory(instanceCreators);
+    Map<Type, InstanceCreator<?>> copyInstanceCreators = new HashMap<>(this.instanceCreators);
+    Factory factory = new Factory(copyInstanceCreators);
     gsonBuilder.registerTypeAdapterFactory(factory);
-    for (Map.Entry<Type, InstanceCreator<?>> entry : instanceCreators.entrySet()) {
+    for (Map.Entry<Type, InstanceCreator<?>> entry : copyInstanceCreators.entrySet()) {
       gsonBuilder.registerTypeAdapter(entry.getKey(), factory);
     }
   }

@@ -33,7 +33,7 @@ public class NonNullElementWrapperList<E> extends AbstractList<E> implements Ran
   private final ArrayList<E> delegate;
 
   @SuppressWarnings("NonApiType")
-  public NonNullElementWrapperList(ArrayList<E> delegate) {
+  public NonNullElementWrapperList(List<E> delegate) {
     this.delegate = Objects.requireNonNull(delegate);
   }
 

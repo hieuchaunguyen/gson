@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2011 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.google.gson.extras.examples.rawcollections;
 
 import com.google.gson.Gson;
@@ -10,8 +25,7 @@ import java.util.logging.Logger;
 @SuppressWarnings({"PrivateConstructorForUtilityClass", "SystemOut"})
 public class RawCollectionsExample {
 
-  private static final Logger LOGGER =
-      Logger.getLogger(RawCollectionsExample.class.getName());
+  private static final Logger LOGGER = Logger.getLogger(RawCollectionsExample.class.getName());
 
   static class Event {
     private String name;
@@ -31,12 +45,15 @@ public class RawCollectionsExample {
   @SuppressWarnings({"unchecked", "rawtypes"})
   public static void main(String[] args) {
     Gson gson = new Gson();
+
     Collection collection = new ArrayList();
     collection.add("hello");
     collection.add(5);
     collection.add(new Event("GREETINGS", "guest"));
 
     String json = gson.toJson(collection);
+
+    // Replaced System.out.println with logger
     LOGGER.info("Using Gson.toJson() on a raw collection: " + json);
 
     JsonArray array = JsonParser.parseString(json).getAsJsonArray();
@@ -44,6 +61,7 @@ public class RawCollectionsExample {
     int number = gson.fromJson(array.get(1), int.class);
     Event event = gson.fromJson(array.get(2), Event.class);
 
+    // Replaced System.out.printf with logger
     LOGGER.info(String.format("Using Gson.fromJson() to get: %s, %d, %s", message, number, event));
   }
 }

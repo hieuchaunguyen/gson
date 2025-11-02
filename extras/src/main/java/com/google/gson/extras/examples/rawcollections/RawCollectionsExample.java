@@ -46,7 +46,7 @@ public class RawCollectionsExample {
     collection.add(5);
     collection.add(new Event("GREETINGS", "guest"));
     String json = gson.toJson(collection);
-    System.out.println("Using Gson.toJson() on a raw collection: " + json);
+    logger.info("Using Gson.toJson() on a raw collection: " + json);
     JsonArray array = JsonParser.parseString(json).getAsJsonArray();
     String message = gson.fromJson(array.get(0), String.class);
     int number = gson.fromJson(array.get(1), int.class);

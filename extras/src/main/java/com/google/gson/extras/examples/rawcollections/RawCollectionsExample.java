@@ -20,6 +20,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.logging.Logger;
 
 @SuppressWarnings({"PrivateConstructorForUtilityClass", "SystemOut"})
 public class RawCollectionsExample {
@@ -46,7 +47,7 @@ public class RawCollectionsExample {
     collection.add(5);
     collection.add(new Event("GREETINGS", "guest"));
     String json = gson.toJson(collection);
-    logger.info("Using Gson.toJson() on a raw collection: " + json);
+    LOGGER.info(("Using Gson.toJson() on a raw collection: " + json);
     JsonArray array = JsonParser.parseString(json).getAsJsonArray();
     String message = gson.fromJson(array.get(0), String.class);
     int number = gson.fromJson(array.get(1), int.class);

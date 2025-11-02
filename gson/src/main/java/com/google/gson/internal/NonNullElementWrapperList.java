@@ -30,10 +30,10 @@ import java.util.RandomAccess;
  */
 public class NonNullElementWrapperList<E> extends AbstractList<E> implements RandomAccess {
   // Explicitly specify ArrayList as type to guarantee that delegate implements RandomAccess
-  private final List<E> delegate;
+  private final ArrayList<E> delegate;
 
   @SuppressWarnings("NonApiType")
-  public NonNullElementWrapperList(List<E> delegate) {
+  public NonNullElementWrapperList(ArrayList<E> delegate) {
     this.delegate = Objects.requireNonNull(delegate);
   }
 

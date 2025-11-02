@@ -1377,40 +1377,38 @@ public final class Gson {
         return null;
       }
       throw new JsonSyntaxException(e);
-    } catch (IllegalStateException e) {
-      throw new JsonSyntaxException(e);
-    } catch (IOException e) {
-      // TODO(inder): Figure out whether it is indeed right to rethrow this as JsonSyntaxException
+    } catch (IllegalStateException | IOException e) {
       throw new JsonSyntaxException(e);
     } catch (AssertionError e) {
       throw new AssertionError(
-          "AssertionError (GSON " + GsonBuildConfig.VERSION + "): " + e.getMessage(), e);
+              "AssertionError (GSON " + "): " + e.getMessage(), e);
     } finally {
       reader.setStrictness(oldStrictness);
     }
-  }
 
-  /**
-   * This method deserializes the JSON read from the specified parse tree into an object of the
-   * specified type. It is not suitable to use if the specified class is a generic type since it
-   * will not have the generic type information because of the Type Erasure feature of Java.
-   * Therefore, this method should not be used if the desired type is a generic type. Note that this
-   * method works fine if any of the fields of the specified object are generics, just the object
-   * itself should not be a generic type. For the cases when the object is of generic type, invoke
-   * {@link #fromJson(JsonElement, TypeToken)}.
-   *
-   * @param <T> the type of the desired object
-   * @param json the root of the parse tree of {@link JsonElement}s from which the object is to be
-   *     deserialized
-   * @param classOfT The class of T
-   * @return an object of type T from the JSON. Returns {@code null} if {@code json} is {@code null}
-   *     or if {@code json} is empty.
-   * @throws JsonSyntaxException if json is not a valid representation for an object of type
-   *     classOfT
-   * @since 1.3
-   * @see #fromJson(Reader, Class)
-   * @see #fromJson(JsonElement, TypeToken)
-   */
+
+
+    /**
+     * This method deserializes the JSON read from the specified parse tree into an object of the
+     * specified type. It is not suitable to use if the specified class is a generic type since it
+     * will not have the generic type information because of the Type Erasure feature of Java.
+     * Therefore, this method should not be used if the desired type is a generic type. Note that this
+     * method works fine if any of the fields of the specified object are generics, just the object
+     * itself should not be a generic type. For the cases when the object is of generic type, invoke
+     * {@link #fromJson(JsonElement, TypeToken)}.
+     *
+     * @param <T> the type of the desired object
+     * @param json the root of the parse tree of {@link JsonElement}s from which the object is to be
+     *     deserialized
+     * @param classOfT The class of T
+     * @return an object of type T from the JSON. Returns {@code null} if {@code json} is {@code null}
+     *     or if {@code json} is empty.
+     * @throws JsonSyntaxException if json is not a valid representation for an object of type
+     *     classOfT
+     * @since 1.3
+     * @see #fromJson(Reader, Class)
+     * @see #fromJson(JsonElement, TypeToken)
+     */
   public <T> T fromJson(JsonElement json, Class<T> classOfT) throws JsonSyntaxException {
     return fromJson(json, TypeToken.get(classOfT));
   }

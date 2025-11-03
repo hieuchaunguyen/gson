@@ -1377,10 +1377,7 @@ public final class Gson {
         return null;
       }
       throw new JsonSyntaxException(e);
-    } catch (IllegalStateException e) {
-      throw new JsonSyntaxException(e);
-    } catch (IOException e) {
-      // TODO(inder): Figure out whether it is indeed right to rethrow this as JsonSyntaxException
+    } catch (IllegalStateException | IOException e) {
       throw new JsonSyntaxException(e);
     } catch (AssertionError e) {
       throw new AssertionError(
